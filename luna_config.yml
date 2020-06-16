@@ -1,0 +1,2 @@
+supported_target: azureml,mlflow
+project_type: train_your_own_model

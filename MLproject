@@ -1,0 +1,33 @@
+name: EDDI
+
+conda_env: conda.yaml
+# Can have a docker_env instead of a conda_env, e.g.
+# docker_env:
+#    image:  mlflow-docker-example
+
+entry_points:
+  training:
+    parameters:
+      userInput: {type: string, default: '{}'}
+      userId: {type: string, default: 'defaultUser'}
+      modelId: {type: string, default: 'defaultModel'}
+      productName: {type: string, default: 'defaultProduct'}
+      deploymentName: {type: string, default: 'defaultDeployment'}
+      apiVersion: {type: string, default: 'defaultVersion'}
+    command: "python train.py --userInput {userInput} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion}"
+  inference:
+    parameters:
+      userInput: {type: string, default: '{}'}
+      operationId: {type: string, default: 'defaultOperation'}
+      modelId: {type: string, default: 'defaultModel'}
+    command: "python batchinference.py --userInput {userInput} --operationId {operationId} -modelId {modelId}"
+  deployment:
+    parameters:
+      userInput: {type: string, default: '{}'}
+      endpointId: {type: string, default: 'defaultEndpoint'}
+      userId: {type: string, default: 'defaultUser'}
+      modelId: {type: string, default: 'defaultModel'}
+      productName: {type: string, default: 'defaultProduct'}
+      deploymentName: {type: string, default: 'defaultDeployment'}
+      apiVersion: {type: string, default: 'defaultVersion'}
+    command: "python train.py --userInput {userInput} --endpointId {endpointId} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion}"
