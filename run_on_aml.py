@@ -10,27 +10,15 @@ from azureml.core.conda_dependencies import CondaDependencies
 from azureml.core.runconfig import DEFAULT_CPU_IMAGE
 from uuid import uuid4
 
-from modelManager import ModelManager
+from src.luna.utils import pipelineManager
 import os
 
-ws = Workspace.from_config(path='.cloud/.azureml/', _file_name='config.json')
+ws = Workspace.from_config(path='.cloud/.azureml/', _file_name='default_workspace.json')
 
+run_id = pipelineManager.RunProject(azureml_workspace = ws, 
+                                    entry_point = 'deployment', 
+                                    experiment_name = 'mlFlowtest', 
+                                    parameters={'modelId': 'anewmodel', 'endpointId': 'anewendpoint'}, 
+                                    tags={'userId': 'xiwu@microsoft.com', 'productName': 'eddi', 'deploymentName': 'westus', 'apiVersion':'v1.0'})
 
-run_config = RunConfiguration.load('.cloud/.azureml/aml_run_config.yml')
-
-arguments = ModelManager.GetPipelineArguments('./MLproject', 'training')
-
-trainStep = PythonScriptStep(
-    script_name="src/luna/train.py",
-    arguments=arguments,
-    inputs=[],
-    outputs=[],
-    source_directory=os.getcwd(),
-    runconfig=run_config
-)
-
-pipeline1 = Pipeline(workspace=ws, steps=[trainStep])
-
-experiment = Experiment(ws, 'mlFlowtest')
-experiment.set_tags(tags={'userId': 'xiwu@microsoft.com', 'productName': 'eddi', 'deploymentName': 'westus', 'apiVersion':'v1.0'})
-pipeline_run1 = experiment.submit(pipeline1)
+print(run_id)

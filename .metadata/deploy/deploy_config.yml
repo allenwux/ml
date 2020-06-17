@@ -1,5 +1,5 @@
 kubernetes:
-  cpu_cores: 1
+  cpu_cores: 0.5
   memory_gb: 1
   gpu_cores: 0
   autoscale_enabled: true

@@ -1,4 +1,3 @@
 workspace_name: myworkspace
-compute_cluster: mycomputecluster
-deployment_target: aks
-inference_cluster: myinferencecluster
+deployment_target: aci
+aks_cluster: myinferencecluster

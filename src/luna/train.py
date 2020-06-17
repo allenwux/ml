@@ -3,15 +3,11 @@ import os
 
 args, userInput = ModelManager.ParseArguments("deployment")
 
-## train your model here
+# train your model here
+# userInput is a dictionary, for example userInput['source']
 
-os.mkdir('./mymodel')
-
-f = open("./mymodel/demofile2.txt", "a")
-f.write("Now the file has more content!")
-f.close()
-print('registering model')
-
-ModelManager.RegisterModel(model_path = './mymodel',
-                       description = "EDDI for boston",
+# update the model_path to locate your model
+# update the description
+ModelManager.RegisterModel(model_path = 'models',
+                       description = "your model description",
                        args=args)

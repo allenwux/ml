@@ -15,7 +15,7 @@ entry_points:
       deploymentName: {type: string, default: 'defaultDeployment'}
       apiVersion: {type: string, default: 'defaultVersion'}
     command: "python src\\luna\\train.py --userInput {userInput} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion}"
-  inference:
+  batchinference:
     parameters:
       userInput: {type: string, default: '{}'}
       operationId: {type: string, default: 'defaultOperation'}
@@ -23,8 +23,8 @@ entry_points:
     command: "python src\\luna\\batchinference.py --userInput {userInput} --operationId {operationId} -modelId {modelId}"
   deployment:
     parameters:
-      userInput: {type: string, default: '{}'}
-      endpointId: {type: string, default: 'defaultEndpoint'}
+      userInput: {type: string, default: '{"dns_name_label":"mlflowtest"}'}
+      endpointId: {type: string, default: 'defaultendpoint'}
       userId: {type: string, default: 'defaultUser'}
       modelId: {type: string, default: 'defaultModel'}
       productName: {type: string, default: 'defaultProduct'}
