@@ -12,6 +12,7 @@ dependencies:
 
 - pip:
   - azureml-sdk==1.0.83.*
-  - yaml
+  - luna-publish-utils
+  - pyyaml
 channels:
 - conda-forge

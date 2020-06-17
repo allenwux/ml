@@ -14,13 +14,13 @@ entry_points:
       productName: {type: string, default: 'defaultProduct'}
       deploymentName: {type: string, default: 'defaultDeployment'}
       apiVersion: {type: string, default: 'defaultVersion'}
-    command: "python train.py --userInput {userInput} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion}"
+    command: "python .\\src\\luna\\train.py --userInput {userInput} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion}"
   inference:
     parameters:
       userInput: {type: string, default: '{}'}
       operationId: {type: string, default: 'defaultOperation'}
       modelId: {type: string, default: 'defaultModel'}
-    command: "python batchinference.py --userInput {userInput} --operationId {operationId} -modelId {modelId}"
+    command: "python .\\src\\luna\\batchinference.py --userInput {userInput} --operationId {operationId} -modelId {modelId}"
   deployment:
     parameters:
       userInput: {type: string, default: '{}'}
@@ -30,4 +30,4 @@ entry_points:
       productName: {type: string, default: 'defaultProduct'}
       deploymentName: {type: string, default: 'defaultDeployment'}
       apiVersion: {type: string, default: 'defaultVersion'}
-    command: "python train.py --userInput {userInput} --endpointId {endpointId} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion}"
+    command: "python .\\src\\luna\\train.py --userInput {userInput} --endpointId {endpointId} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion}"

@@ -30,7 +30,7 @@ environment:
 # Path to the conda dependencies file to use for this run. If a project
 # contains multiple programs with different sets of dependencies, it may be
 # convenient to manage those environments with separate files.
-    condaDependenciesFile: conda.yml
+    condaDependenciesFile: ..\..\conda.yml
 # The base conda environment used for incremental environment creation.
     baseCondaEnvironment:
 # Docker details

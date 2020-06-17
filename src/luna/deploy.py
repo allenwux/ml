@@ -1,3 +1,3 @@
-import utils.ModelManager as modelManager
+from modelManager import ModelManager
 
-args, userInput = modelManager.ParseArguments("deployment")
+args, userInput = ModelManager.ParseArguments("deployment")
