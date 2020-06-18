@@ -18,7 +18,7 @@ ws = Workspace.from_config(path='.cloud/.azureml/', _file_name='default_workspac
 run_id = utils.RunProject(azureml_workspace = ws, 
                                     entry_point = 'training', 
                                     experiment_name = 'mlFlowtest', 
-                                    parameters={'modelId': 'anewmodel', 'endpointId': 'anewendpoint'}, 
+                                    parameters={'modelId': 'anewmodel', 'endpointId': 'anewendpoint', 'operationId': 'myops'}, 
                                     tags={'userId': 'xiwu@microsoft.com', 'productName': 'eddi', 'deploymentName': 'westus', 'apiVersion':'v1.0'})
 
 print(run_id)
