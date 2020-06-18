@@ -1,13 +1,13 @@
-from modelManager import ModelManager
+from luna import utils
 import os
 
-args, userInput = ModelManager.ParseArguments("deployment")
+args, userInput = utils.ParseArguments("deployment")
 
 # train your model here
 # userInput is a dictionary, for example userInput['source']
 
 # update the model_path to locate your model
 # update the description
-ModelManager.RegisterModel(model_path = 'models',
+utils.RegisterModel(model_path = 'models',
                        description = "your model description",
                        args=args)

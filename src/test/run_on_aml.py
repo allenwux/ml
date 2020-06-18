@@ -10,13 +10,13 @@ from azureml.core.conda_dependencies import CondaDependencies
 from azureml.core.runconfig import DEFAULT_CPU_IMAGE
 from uuid import uuid4
 
-from src.luna.utils import pipelineManager
+from luna import utils
 import os
 
 ws = Workspace.from_config(path='.cloud/.azureml/', _file_name='default_workspace.json')
 
-run_id = pipelineManager.RunProject(azureml_workspace = ws, 
-                                    entry_point = 'deployment', 
+run_id = utils.RunProject(azureml_workspace = ws, 
+                                    entry_point = 'training', 
                                     experiment_name = 'mlFlowtest', 
                                     parameters={'modelId': 'anewmodel', 'endpointId': 'anewendpoint'}, 
                                     tags={'userId': 'xiwu@microsoft.com', 'productName': 'eddi', 'deploymentName': 'westus', 'apiVersion':'v1.0'})
