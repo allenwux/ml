@@ -1,7 +1,7 @@
 from luna import utils
 import os
 
-args, userInput = utils.ParseArguments("deployment")
+args, userInput = utils.ParseArguments("inference")
 
 # define your own temp model path
 model_path = os.path.join(os.getcwd(), "models", args.modelId)

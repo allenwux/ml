@@ -13,10 +13,11 @@ from uuid import uuid4
 from luna import utils
 import os
 
+
 ws = Workspace.from_config(path='.cloud/.azureml/', _file_name='default_workspace.json')
 
 run_id = utils.RunProject(azureml_workspace = ws, 
-                                    entry_point = 'training', 
+                                    entry_point = 'deployment', 
                                     experiment_name = 'mlFlowtest', 
                                     parameters={'modelId': 'anewmodel', 'endpointId': 'anewendpoint', 'operationId': 'myops'}, 
                                     tags={'userId': 'xiwu@microsoft.com', 'productName': 'eddi', 'deploymentName': 'westus', 'apiVersion':'v1.0'})

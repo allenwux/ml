@@ -1,7 +1,7 @@
 from luna import utils
 import os
 
-args, userInput = utils.ParseArguments("deployment")
+args, userInput = utils.ParseArguments("training")
 
 # train your model here
 # userInput is a dictionary, for example userInput['source']
