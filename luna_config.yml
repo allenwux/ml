@@ -2,16 +2,16 @@ MLproject: MLproject
 supported_target: azureml,mlflow
 project_type: train_your_own_model
 conda_env: conda.yml
-deploy_config: .metadata/deploy/deploy_config.yml
+deploy_config: .parameters/deploy/deploy_config.yml
 code:
-  deployment: 'src/luna/deploy.py'
-  score: 'src/luna/score.py'
-  training: 'src/luna/train.py'
-  batchinference: 'src/luna/batchinference.py'
+  deployment: 'src/luna_publish/deploy.py'
+  score: 'src/luna_publish/score.py'
+  training: 'src/luna_publish/train.py'
+  batchinference: 'src/luna_publish/batchinference.py'
 azureml:
   run_config: .cloud/.azureml/aml_run_config.yml
-  workspace_config: .cloud/.azureml/workspace.yml
-  default_workspace: .cloud/.azureml/default_workspace.json
+  workspace_config: .cloud/.azureml/compute.yml
+  test_workspace: .cloud/.azureml/test_workspace.json
 mlflow:
   spark_config: .cloud/.mlflow/spark_config.json
-  workspace_config: .cloud/.mlflow/workspace.yml
+  workspace_config: .cloud/.mlflow/compute.yml
