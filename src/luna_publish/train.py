@@ -10,10 +10,11 @@ class LunaPythonModel(PythonModel):
     def predict(self, context, model_input):
         return model_input
 
+#mlflow.set_tracking_uri('databricks')
 
-mlflow.start_run()
+#mlflow.start_run(experiment_id=73511552574955)
 
-args, userInput = utils.ParseArguments("training")
+#args, userInput = utils.ParseArguments("training")
 
 # train your model here
 # userInput is a dictionary, for example userInput['source']
@@ -24,6 +25,7 @@ args, userInput = utils.ParseArguments("training")
 #                       description = "your model description",
 #                       args=args)
 
+mlflow.start_run()
 model_path = 'models'
 mlFlowRun = mlflow.active_run()
 print(mlFlowRun)
@@ -36,7 +38,8 @@ if mlFlowRun:
     print(model_uri)
     result = mlflow.register_model(
         model_uri,
-        args.modelId
+        #args.modelId
+        'defaultModelId'
     )
     print(result)
 
