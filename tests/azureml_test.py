@@ -22,7 +22,7 @@ endpointId = '00000000-0000-0000-0000-000000000000'
 operationId = '00000000-0000-0000-0000-000000000000'
 subscriptionId = '00000000-0000-0000-0000-000000000000'
 
-experimentName = 'mlFlowtest'
+experimentName = 'xiwumlflowTest'
 userId = 'xiwu@microsoft.com'
 productName = 'eddi'
 deploymentName = 'westus'

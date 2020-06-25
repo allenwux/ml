@@ -14,13 +14,14 @@ entry_points:
       productName: {type: string, default: 'defaultProduct'}
       deploymentName: {type: string, default: 'defaultDeployment'}
       apiVersion: {type: string, default: 'defaultVersion'}
-    command: "python src\\luna\\train.py --userInput {userInput} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion}"
+      subscriptionId: {type: string, default: 'defaultSubscription'}
+    command: "python src/luna/train.py --userInput {userInput} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion} --subscriptionId {subscriptionId}"
   batchinference:
     parameters:
       userInput: {type: string, default: '{}'}
       operationId: {type: string, default: 'defaultOperation'}
       modelId: {type: string, default: 'defaultModel'}
-    command: "python src\\luna\\batchinference.py --userInput {userInput} --operationId {operationId} -modelId {modelId}"
+    command: "python src/luna/batchinference.py --userInput {userInput} --operationId {operationId} -modelId {modelId}"
   deployment:
     parameters:
       userInput: {type: string, default: '{"dns_name_label":"mlflowtest"}'}
@@ -30,4 +31,5 @@ entry_points:
       productName: {type: string, default: 'defaultProduct'}
       deploymentName: {type: string, default: 'defaultDeployment'}
       apiVersion: {type: string, default: 'defaultVersion'}
-    command: "python src\\luna\\train.py --userInput {userInput} --endpointId {endpointId} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion}"
+      subscriptionId: {type: string, default: 'defaultSubscription'}
+    command: "python src/luna/train.py --userInput {userInput} --endpointId {endpointId} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion} --subscriptionId {subscriptionId}"
