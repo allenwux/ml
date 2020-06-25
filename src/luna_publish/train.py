@@ -1,5 +1,8 @@
 from luna import utils
 import os
+import mlflow
+
+mlflow.start_run()
 
 args, userInput = utils.ParseArguments("training")
 
@@ -11,3 +14,6 @@ args, userInput = utils.ParseArguments("training")
 utils.RegisterModel(model_path = 'models',
                        description = "your model description",
                        args=args)
+
+
+mlflow.end_run()
