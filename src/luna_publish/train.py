@@ -2,13 +2,7 @@ from luna import utils
 import os
 import mlflow
 from mlflow.pyfunc import PythonModel, PythonModelContext
-
-class LunaPythonModel(PythonModel):
-    def load_context(self, context):
-        return
-
-    def predict(self, context, model_input):
-        return model_input
+from LunaPythonModel import LunaPythonModel
 
 #mlflow.set_tracking_uri('databricks')
 
@@ -26,6 +20,7 @@ class LunaPythonModel(PythonModel):
 #                       args=args)
 
 mlflow.start_run()
+print(mlflow.get_tracking_uri())
 model_path = 'models'
 mlFlowRun = mlflow.active_run()
 print(mlFlowRun)
@@ -33,7 +28,7 @@ if mlFlowRun:
     mlflow.pyfunc.log_model(artifact_path=model_path, 
         python_model=LunaPythonModel(), 
         artifacts={'MLFLOW_MODEL': 'models'}, 
-        conda_env=mlflow.pyfunc.get_default_conda_env())
+        conda_env='conda.yml')
     model_uri = "runs:/{run_id}/{artifact_path}".format(run_id=mlFlowRun.info.run_id, artifact_path=model_path)
     print(model_uri)
     result = mlflow.register_model(

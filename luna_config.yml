@@ -1,5 +1,6 @@
 MLproject: MLproject
-supported_target: azureml,mlflow
+supported_run_type: local,azureml,mlflow
+run_type: mlflow
 project_type: train_your_own_model
 conda_env: conda.yml
 deploy_config: .parameters/deploy/deploy_config.yml

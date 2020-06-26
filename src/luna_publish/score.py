@@ -1,10 +1,9 @@
 from luna import utils
-import os
+from LunaPythonModel import LunaPythonModel
 
 def init():
-    global model_path   
-    model_path = utils.GetModelPath()
+    global python_model
+    python_model = LunaPythonModel()
 
 def run(userInput):
-    # Add your scoring code here. You model is the following directory: model_path/<model_path you specified in train.py>
-    return userInput
+    return python_model.predict(None, userInput)

@@ -8,6 +8,7 @@ conda_env: conda.yml
 entry_points:
   training:
     parameters:
+      runMode: {type: string, default: 'AzureML'}
       userInput: {type: string, default: '{}'}
       userId: {type: string, default: 'defaultUser'}
       modelId: {type: string, default: 'defaultModel'}
@@ -15,15 +16,17 @@ entry_points:
       deploymentName: {type: string, default: 'defaultDeployment'}
       apiVersion: {type: string, default: 'defaultVersion'}
       subscriptionId: {type: string, default: 'defaultSubscription'}
-    command: "python src/luna_publish/train.py --userInput {userInput} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion} --subscriptionId {subscriptionId}"
+    command: "python src/luna_publish/train.py --runMode {runMode} --userInput {userInput} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion} --subscriptionId {subscriptionId}"
   batchinference:
     parameters:
+      runMode: {type: string, default: 'AzureML'}
       userInput: {type: string, default: '{}'}
       operationId: {type: string, default: 'defaultOperation'}
       modelId: {type: string, default: 'defaultModel'}
-    command: "python src/luna_publish/batchinference.py --userInput {userInput} --operationId {operationId} -modelId {modelId}"
+    command: "python src/luna_publish/batchinference.py --runMode {runMode} --userInput {userInput} --operationId {operationId} -modelId {modelId}"
   deployment:
     parameters:
+      runMode: {type: string, default: 'AzureML'}
       userInput: {type: string, default: '{"dns_name_label":"mlflowtest"}'}
       endpointId: {type: string, default: 'defaultendpoint'}
       userId: {type: string, default: 'defaultUser'}
@@ -32,4 +35,4 @@ entry_points:
       deploymentName: {type: string, default: 'defaultDeployment'}
       apiVersion: {type: string, default: 'defaultVersion'}
       subscriptionId: {type: string, default: 'defaultSubscription'}
-    command: "python src/luna_publish/train.py --userInput {userInput} --endpointId {endpointId} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion} --subscriptionId {subscriptionId}"
+    command: "python src/luna_publish/train.py --runMode {runMode} --userInput {userInput} --endpointId {endpointId} --userId {userId} --modelId {modelId} --productName {productName} --deploymentName {deploymentName} --apiVersion {apiVersion} --subscriptionId {subscriptionId}"
