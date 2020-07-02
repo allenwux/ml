@@ -1,11 +1,15 @@
-from luna import utils
+from luna.lunaUtils import LunaUtils
 import os
 
-args, userInput = utils.ParseArguments("inference")
+from LunaPythonModel import LunaPythonModel
 
-# define your own temp model path
-model_path = os.getcwd()
-utils.DownloadModel(args.modelId, model_path)
+utils = LunaUtils.Create(run_type = 'batchinference')
+args = utils.args
+userInput = utils.userInput
 
-# Do your batch inference here. You model is the following directory: model_path/<model_path you specified in train.py>
-# userInput is a dictionary, for example userInput['source']
+model_path = utils.DownloadModel()
+print(model_path)
+
+python_model = LunaPythonModel()
+
+model_path = python_model.train(args, userInput)

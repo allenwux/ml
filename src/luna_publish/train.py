@@ -1,14 +1,16 @@
-from luna import utils
+from luna.lunaUtils import LunaUtils
 import os
+from LunaPythonModel import LunaPythonModel
 
-args, userInput = utils.ParseArguments("training")
+utils = LunaUtils.Create(run_type = 'training')
+args = utils.args
+userInput = utils.userInput
 
-# train your model here
-# userInput is a dictionary, for example userInput['source']
+python_model = LunaPythonModel()
 
-# update the model_path to locate your model
-# update the description
-utils.RegisterModel(model_path = 'models',
-                       description = "your model description",
-                       args=args)
+model_path, description = python_model.train(args, userInput)
 
+
+utils.RegisterModel(model_path = model_path,
+                       description = description,
+                       luna_python_model=LunaPythonModel())

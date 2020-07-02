@@ -1,4 +1,4 @@
-from luna import utils
+from luna.lunaUtils import LunaUtils
 from azureml.core.model import Model
 from azureml.core import Run
 from azureml.core import Workspace
@@ -8,4 +8,5 @@ from azureml.core.webservice import AksWebservice, AciWebservice, Webservice
 
 import os
 
+utils = LunaUtils.Create(run_type = 'deployment')
 utils.DeployModel()
