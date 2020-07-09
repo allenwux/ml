@@ -22,21 +22,34 @@ class LunaPythonModel(PythonModel):
         scoring_result = 'result'
         return scoring_result
 
-    def train(self, args, user_input):
+    def train(self, args, user_input, logger):
         # train your model here
         # userInput is a dictionary, for example userInput['source']
 
         # Update the model_path if your model is saved in a different folder. 
         # All files under model_path will be saved and registered as a part of the model
         # Update the description for your model
+
+        # Logging example:
+        # 1. Log metric: logger.log_metric("accuracy, 0.89)
+        # 2. Log metrics: logger.log_metrics({"accuracy": 0.89, "execution_time_in_sec": 100})
+        # 3. Upload a file or artifact: logger.upload_artifacts(local_file_name, upload_file_name)
+        # 4. Upload files or artifacts: logger.upload_artifacts(local_directory_name, upload_directory_name)
+
         model_path = 'models'
         description = 'this is my model description'
         return model_path, description
 
-    def batch_inference(self, args, user_input, model_path):
+    def batch_inference(self, args, user_input, model_path, logger):
         # Do your batch inference here. You model is the following directory: model_path/<model_path you specified in train method>
         # userInput is a dictionary, for example userInput['source'] or userInput['hyper_parameters]['epocs']
         # The return value will be ignored. You should ask user to provide a output data source as user input and write the result
+
+        # Logging example:
+        # 1. Log metric: logger.log_metric("accuracy, 0.89)
+        # 2. Log metrics: logger.log_metrics({"accuracy": 0.89, "execution_time_in_sec": 100})
+        # 3. Upload a file or artifact: logger.upload_artifacts(local_file_name, upload_file_name)
+        # 4. Upload files or artifacts: logger.upload_artifacts(local_directory_name, upload_directory_name)
         return
 
     ## DO NOT CHANGE

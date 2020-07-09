@@ -4,11 +4,11 @@ from LunaPythonModel import LunaPythonModel
 
 utils = LunaUtils.Create(run_type = 'training')
 args = utils.args
-userInput = utils.userInput
+user_input = utils.user_input
 
 python_model = LunaPythonModel()
 
-model_path, description = python_model.train(args, userInput)
+model_path, description = python_model.train(args, user_input, utils.logger)
 
 
 utils.RegisterModel(model_path = model_path,

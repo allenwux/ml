@@ -5,11 +5,11 @@ from LunaPythonModel import LunaPythonModel
 
 utils = LunaUtils.Create(run_type = 'batchinference')
 args = utils.args
-userInput = utils.userInput
+user_input = utils.user_input
 
 model_path = utils.DownloadModel()
 print(model_path)
 
 python_model = LunaPythonModel()
 
-model_path = python_model.train(args, userInput)
+python_model.batch_inference(args, user_input, model_path, utils.logger)
