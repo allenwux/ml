@@ -1,19 +1,21 @@
-## Update your code
-- Update src/luna/train.py and add your training code
-  - Add your training code
-  - Save your model in *models* folder. You can save the model in a subdirectory, or a diffrent folder (not recommended)
-  - If your model is saved in a subdirectory of *models* folder or a different directory, update the *model_path* argument in the RegisterModel call
-  - Update the description argument in the RegisterModel call
-- Update src/luna/batchinference.py and add your batch inference code
-  -  Update the value of *model_path* variable if you want to download model to a different folder
-  -  Add your inference code
-  -  Delete the downloaded model after inference
-- Update the run function in src/luna/score.py and add your scoring code
-  - Add anything you need to run when the container instance startes and every time when it restarts to the *init()* function
-  - Add your scoring code in the *run()* function and return the result. Use *model_path* global variable to locate your model (pre-downloaded to the container)
+# Demo: Publish a regression model service
 
-## Update your environment
-- Update the conda.yml to add your conda or pip dependencies
-- 
+## Overview
+In this article, we will show you how to use Luna service to publish an AI service to train regression model and use it to do batch inference or real time scoring.
 
-You are ready to go!
+## Deploy Luna Service
+You can deploy Luna service by following the instruction [here](aka.ms/projectluna). If you want to use our pre-deployed demo environment, please contact xiwu@microsoft.com
+
+## Clone Luna project template
+Clone the template from [here](https://aka.ms/lunaprojecttemplate)
+
+## Update AML environment
+### Update AML workspace info
+Update the value of "Scope" property in ./.cloud/.azureml/test_workspace.json with your AML workspace Azure resource Id
+
+### Update AML compte targets
+Update the value of "target" property in ./.cloud/.azureml/aml_run_config.yml with the compte cluster name. The compute cluster should be already created and registered in your AML workspace.
+
+### Update your deployment targets
+Update the value of "deployment_target" in ./.cloud/.azureml/compute.yml. Right now we support aci (Azure Container Instance) or aks (Azure Kubernetes Service). If you choose AKS as deployment target, you also need to update the value of "aks_cluster" to the name of AKS cluster you created and registerd in AML.
+

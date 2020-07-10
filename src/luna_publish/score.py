@@ -6,4 +6,5 @@ def init():
     python_model.set_run_mode('azureml')
 
 def run(userInput):
-    return python_model.predict(None, userInput)
+    result = python_model.predict(None, userInput)
+    return result

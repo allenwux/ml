@@ -16,6 +16,7 @@ import os
 from uuid import uuid4
 import requests
 import json
+import pathlib
 
 modelId = '00000000-0000-0000-0000-000000000000'
 endpointId = '00000000-0000-0000-0000-000000000000'
@@ -31,9 +32,10 @@ ws = None
 dns_name_label = 'testlabel'
 
 def init():
-    global ws, modelId, endpointId, operationId, subscriptionId, dns_name_label
+    global ws, modelId, endpointId, operationId, subscriptionId, dns_name_label, test_data
     ws = Workspace.from_config(path='.cloud/.azureml/', _file_name='test_workspace.json')
-    modelId = str('a' + uuid4().hex[1:])
+    #modelId = str('a' + uuid4().hex[1:])
+    modelId = "a10ef072f4954586aff6b14740b5240f"
     endpointId = str('a' + uuid4().hex[1:])
     operationId = str('a' + uuid4().hex[1:])
     subscriptionId = str('a' + uuid4().hex)[1:]
@@ -43,6 +45,9 @@ def init():
     print('operationId {}'.format(operationId))
     print('subscriptionId {}'.format(subscriptionId))
     print('dns_name_label {}'.format(dns_name_label))
+    test_data_file = os.path.join(pathlib.Path(__file__).parent.absolute(), "test_data.json")
+    with open(test_data_file) as f:
+        test_data = json.load(f)
 
 def trainModel(userInput='{}'):
     run_id = utils.RunProject(azureml_workspace = ws, 
@@ -136,14 +141,15 @@ def test_deployed_aci_service(data):
 
 if __name__ == "__main__":
     init()
-    run_id = trainModel(userInput='{}')
+    """
+    run_id = trainModel(userInput=json.dumps(test_data['training_user_input']))
     trace_run_by_tags(run_id, tags={'modelId': modelId, 'userId': userId, 'subscriptionId': subscriptionId})
-
-    run_id = batchInference(userInput='{}')
+    run_id = batchInference(userInput=json.dumps(test_data['batch_inference_input']))
     trace_run_by_tags(run_id, tags={'operationId': operationId, 'userId': userId, 'subscriptionId': subscriptionId})
 
+    """
     userInput = '{{"dns_name_label":"{}"}}'.format(dns_name_label)
     run_id = deploy(userInput=userInput)
     trace_run_by_tags(run_id, tags={'endpointId': endpointId, 'userId': userId, 'subscriptionId': subscriptionId})
 
-    test_deployed_aci_service({'data': 'Hello World!'})
+    test_deployed_aci_service(data=test_data['real_time_scoring_input'])
